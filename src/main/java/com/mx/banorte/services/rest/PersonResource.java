@@ -75,14 +75,14 @@ public class PersonResource {
             throw new RuntimeException(exc);
         }
 
-        if(dryRun == null || !dryRun){
-            LOG.info("CACHE NAME: "+CACHE_NAME);
-            this.remoteCache.clear();
+        // if(dryRun == null || !dryRun){
+        //     LOG.info("CACHE NAME: "+CACHE_NAME);
+        //     this.remoteCache.clear();
 
-            for(Person p : people){
-                this.remoteCache.put(p.getName() + " " + p.getLastName(), p);
-            }
-        }
+        //     for(Person p : people){
+        //         this.remoteCache.put(p.getName() + " " + p.getLastName(), p);
+        //     }
+        // }
 
         return people;
     }
