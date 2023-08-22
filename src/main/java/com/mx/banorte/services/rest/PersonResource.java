@@ -15,11 +15,14 @@ import org.infinispan.client.hotrod.RemoteCache;
 import org.infinispan.client.hotrod.RemoteCacheManager;
 import com.mx.banorte.services.helpers.PersonGenerator;
 import com.mx.banorte.services.model.Person;
+import java.util.logging.Logger;
 
 import io.quarkus.infinispan.client.Remote;
 
 @Path("/person")
 public class PersonResource {
+
+    private static final Logger LOG = Logger.getLogger(PersonResource.class.getName());
     
     // Since the io.quarkus.infinispan.client.Remote annotation apparently does not perform variable substitution,
     // it is necessary to set the cache name at compile time.
@@ -73,6 +76,7 @@ public class PersonResource {
         }
 
         if(dryRun == null || !dryRun){
+            LOG.info("CACHE NAME: "+CACHE_NAME);
             this.remoteCache.clear();
 
             for(Person p : people){
